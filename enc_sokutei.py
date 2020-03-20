@@ -44,12 +44,17 @@ GPIO.setup(SPICLK, GPIO.OUT)
 GPIO.setup(SPIMOSI, GPIO.OUT)
 GPIO.setup(SPIMISO, GPIO.IN)
 GPIO.setup(SPICS, GPIO.OUT)
+count = 0
+inputVal01=0
 
 try:
     while True:
-        inputVal0 = readadc(0, SPICLK, SPIMOSI, SPIMISO, SPICS)
-        print(inputVal0)
-        sleep(0.2)
+        inputVal00 = readadc(0, SPICLK, SPIMOSI, SPIMISO, SPICS)
+        if  inputVal00 >= 1000 and inputVal01 < 1000:
+            count+=1
+        inputVal01 = inputVal00
+        print(inputVal00,count)
+        sleep(0.02)
         
 except KeyboardInterrupt:
     pass
