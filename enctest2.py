@@ -25,14 +25,15 @@ encoder_green_1=0
 encoder_yellow_1=0
 count=0 
 try:
-    GPIO.output(in1,0)
-    GPIO.output(in2,1)
-    GPIO.output(in3,1)
-    GPIO.output(in4,0)
+    #GPIO.output(in1,0)
+    #GPIO.output(in2,1)
+    #GPIO.output(in3,1)
+    #GPIO.output(in4,0)
 # エンコーダ読み取り
 # 4逓倍
 
-    for i in range(0,1300,1):
+    for i in range(0,1300000,1):
+    #while True:
         encoder_green=GPIO.input(i1)
         encoder_yellow=GPIO.input(i2)
         if(encoder_green_1==0 and encoder_yellow_1==0):
@@ -57,18 +58,13 @@ try:
                 count-=1
         encoder_green_1=encoder_green
         encoder_yellow_1=encoder_yellow
-            print(count) 
-
-    GPIO.output(in1,1)
-    GPIO.output(in2,1)
-    GPIO.output(in3,0)
-    GPIO.output(in4,0)
-    time.sleep(0.5)
+        print(count) 
 except KeyboardInterrupt:
-    GPIO.output(in1,1)
-    GPIO.output(in2,1)
-    GPIO.output(in3,0)
-    GPIO.output(in4,0)
-    time.sleep(0.5)
+    pass
 
+GPIO.output(in1,1)
+GPIO.output(in2,1)
+GPIO.output(in3,0)
+GPIO.output(in4,0)
+time.sleep(0.5)
 GPIO.cleanup()
