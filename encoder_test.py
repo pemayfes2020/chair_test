@@ -33,39 +33,41 @@ GPIO.output(in4,0)
 
 # エンコーダ読み取り
 # 4逓倍
+try:
+    while count <44*21.3*10 and count > -44*21.3:
+        
+        encoder_green=GPIO.input(i1)
+        encoder_yellow=GPIO.input(i2)
+        if(encoder_green_1==0 and encoder_yellow_1==0):
+            if(encoder_green==1 and encoder_yellow==0):
+                count+=1
+            if(encoder_green==0 and encoder_yellow==1):
+                count-=1
+        elif(encoder_green_1==1 and encoder_yellow_1==0):
+            if(encoder_green==1 and encoder_yellow==1):
+                count+=1
+            if(encoder_green==0 and encoder_yellow==0):
+                count-=1
+        elif(encoder_green_1==1 and encoder_yellow_1==1):
+            if(encoder_green==0 and encoder_yellow==1):
+                count+=1
+            if(encoder_green==1 and encoder_yellow==0):
+                count-=1
+        elif(encoder_green_1==0 and encoder_yellow_1==1):
+            if(encoder_green==0 and encoder_yellow==0):
+                count+=1
+            if(encoder_green==1 and encoder_yellow==1):
+                count-=1
+        encoder_green_1=encoder_green
+        encoder_yellow_1=encoder_yellow
+        #if(count!=count0):
+        i+=1
+        #count0=count
+        #print(count) 
+        print(encoder_green, encoder_yellow,count,i)
 
-while count <44*21.3 and count > -44*21.3:
-    
-    encoder_green=GPIO.input(i1)
-    encoder_yellow=GPIO.input(i2)
-    if(encoder_green_1==0 and encoder_yellow_1==0):
-        if(encoder_green==1 and encoder_yellow==0):
-            count+=1
-        if(encoder_green==0 and encoder_yellow==1):
-            count-=1
-    elif(encoder_green_1==1 and encoder_yellow_1==0):
-        if(encoder_green==1 and encoder_yellow==1):
-            count+=1
-        if(encoder_green==0 and encoder_yellow==0):
-            count-=1
-    elif(encoder_green_1==1 and encoder_yellow_1==1):
-        if(encoder_green==0 and encoder_yellow==1):
-            count+=1
-        if(encoder_green==1 and encoder_yellow==0):
-            count-=1
-    elif(encoder_green_1==0 and encoder_yellow_1==1):
-        if(encoder_green==0 and encoder_yellow==0):
-            count+=1
-        if(encoder_green==1 and encoder_yellow==1):
-            count-=1
-    encoder_green_1=encoder_green
-    encoder_yellow_1=encoder_yellow
-    #if(count!=count0):
-    i+=1
-    #count0=count
-    #print(count) 
-    print(encoder_green, encoder_yellow,count,i)
-
+except KeyboardInterrupt:
+    pass
 GPIO.output(in1,1)
 GPIO.output(in2,1)
 GPIO.output(in3,0)
