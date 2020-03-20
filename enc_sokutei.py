@@ -50,11 +50,12 @@ inputVal01=0
 try:
     while True:
         inputVal00 = readadc(0, SPICLK, SPIMOSI, SPIMISO, SPICS)
+        inputVal10 = readadc(1, SPICLK, SPIMOSI, SPIMISO, SPICS)
         if  inputVal00 >= 1000 and inputVal01 < 1000:
             count+=1
         inputVal01 = inputVal00
-        print(inputVal00,count)
-        sleep(0.02)
+        print(inputVal00,inputVal10,count)
+        sleep(0.2)
         
 except KeyboardInterrupt:
     pass
