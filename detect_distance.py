@@ -20,5 +20,7 @@ while True:
         print("distance:"+str(distance))
         if distance<30:
             GPIO.output(LED,1)
+        elif distance > 400:
+            print("error")
         else:
             GPIO.output(LED,0)
